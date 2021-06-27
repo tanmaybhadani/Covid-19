@@ -1,0 +1,18 @@
+<form class="example-form">
+
+    <mat-form-field appearance="fill" id="district">
+        <mat-label>District</mat-label>
+        <input type="text" placeholder="Pick one" matInput [formControl]="myControl" [matAutocomplete]="auto" #name>
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+            (optionSelected)="getCenters($event.option.value)" [displayWith]="displayFn">
+            <mat-option *ngFor="let district of filteredOptions " [value]="district">
+                {{district.district_name}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
+
+<div>
+    <app-centerlist [dataSource]="dataSource" [displayedColumns]="displayedColumns" [filterList]="filterList" id="centerList" (notify) = "setFilters($event)">
+    </app-centerlist>
+</div>

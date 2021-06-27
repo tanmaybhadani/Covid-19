@@ -1,0 +1,27 @@
+<div class="example-container">
+
+  <mat-tab-group mat-align-tabs="center" color = "accent" #tabRef>
+
+    <mat-tab label="Search by Pin">
+      <br>
+      <form #userForm="ngForm" (ngSubmit)="onSubmit()" class="userForm">
+        <mat-form-field appearance="fill" id="pin">
+          <mat-label>Pincode</mat-label>
+          <input required matInput name="pin" #pin="ngModel" pattern="^\d{6}$" type="number" [(ngModel)]="pincode">
+        </mat-form-field>
+        <button [disabled]="userForm.invalid" mat-raised-button color="accent" name="Search">Search</button>
+      </form>
+      <app-centerlist [dataSource] = "dataSource" [displayedColumns] = "displayedColumns" [filterList] = "filterList" (notify) = "setFilters($event)"></app-centerlist>
+    </mat-tab>
+
+    <mat-tab label="Search By District">
+      <br>
+      <app-states></app-states>
+    </mat-tab>
+
+  </mat-tab-group>
+  <br><br>
+</div>
+
+  
+  
